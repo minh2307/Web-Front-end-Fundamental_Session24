@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mảng 2 Chiều</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let row = 0, col = 0;
+        let choice;
+        do {
+            choice = +prompt(`1. Nhập mảng 2 chiều
+2. Hiển thị mảng 2 chiều
+3. Tính tổng các phần tử trong mảng
+4. Tính tổng đường chéo chính
+5. Tính tổng đường chéo phụ
+6. Tính trung bình cộng các phần tử trong một hàng hoặc một cột
+7. Thoát chương trình`);
+
+            switch (choice) {
+                case 1:
+                    row = +prompt("Mời bạn nhập số dòng của mảng 2 chiều: ");
+                    col = +prompt("Mời bạn nhập số cột của mảng 2 chiều: ");
+                    a = [];
+                    for (let i = 0; i < row; i++) {
+                        let rowArr = [];
+                        for (let j = 0; j < col; j++) {
+                            let element = prompt(`Nhập phần tử tại dòng ${i + 1}, cột ${j + 1}:`);
+                            rowArr.push(Number(element));
+                        }
+                        a.push(rowArr);
+                    }
+                    break;
+
+                case 2:
+                    let arrStr = "";
+                    for (let i = 0; i < a.length; i++) {
+                        for (let j = 0; j < a[i].length; j++) {
+                            arrStr += `${a[i][j]} `;
+                        }
+                        arrStr += `\n`;
+                    }
+                    alert(`Mảng hiện tại:\n${arrStr}`);
+                    break;
+
+                case 3:
+                    let sum = 0;
+                    for (let i = 0; i < row; i++) {
+                        for (let j = 0; j < col; j++) {
+                            sum += a[i][j];
+                        }
+                    }
+                    alert(`Tổng các phần tử trong mảng là: ${sum}`);
+                    break;
+                case 4:
+                    if (row !== col) {
+                        alert("Mảng không phải là ma trận vuông, không thể tính tổng đường chéo chính.");
+                    } else {
+                        let sum1 = 0;
+                        for (let i = 0; i < row; i++) {
+                            sum1 += a[i][i];
+                        }
+                        alert(`Tổng đường chéo chính: ${sum1}`);
+                    }
+                    break;
+
+                case 5:
+                    if (row !== col) {
+                        alert("Mảng không phải là ma trận vuông, không thể tính tổng đường chéo phụ.");
+                    } else {
+                        let sum2 = 0;
+                        for (let i = 0; i < row; i++) {
+                            sum2 += a[i][col - 1 - i];
+                        }
+                        alert(`Tổng đường chéo phụ: ${sum2}`);
+                    }
+                    break;
+
+                case 6:
+                    let type = prompt("Bạn muốn tính trung bình cộng của (1) hàng hay (2) cột?");
+                    if (type === "1") {
+                        let rowIndex = +prompt(`Nhập chỉ số hàng (0 - ${row - 1}):`);
+                        if (rowIndex >= 0 && rowIndex < row) {
+                            let sumRow = a[rowIndex].reduce((acc, num) => acc + num, 0);
+                            let avgRow = sumRow / col;
+                            alert(`Trung bình cộng của hàng ${rowIndex + 1} là: ${avgRow}`);
+                        } else {
+                            alert("Chỉ số hàng không hợp lệ.");
+                        }
+                    } else if (type === "2") {
+                        let colIndex = +prompt(`Nhập chỉ số cột (0 - ${col - 1}):`);
+                        if (colIndex >= 0 && colIndex < col) {
+                            let sumCol = 0;
+                            for (let i = 0; i < row; i++) {
+                                sumCol += a[i][colIndex];
+                            }
+                            let avgCol = sumCol / row;
+                            alert(`Trung bình cộng của cột ${colIndex + 1} là: ${avgCol}`);
+                        } else {
+                            alert("Chỉ số cột không hợp lệ.");
+                        }
+                    } else {
+                        alert("Lựa chọn không hợp lệ.");
+                    }
+                    break;
+
+                case 7:
+                    alert('Thoát chương trình.');
+                    break;
+
+                default:
+                    alert("Mời bạn chọn lại.");
+                    break;
+            }
+        } while (choice !== 7);
+    </script>
+</body>
+
+</html>

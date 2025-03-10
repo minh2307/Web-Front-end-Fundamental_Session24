@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let choice;
+        do {
+            choice = +prompt(`1. Nhập mảng số nguyên
+2. Hiển thị mảng
+3. Tìm phần tử lớn nhất trong mảng và in ra chỉ số của nó
+4. Tính tổng và trung bình cộng của các số dương trong mảng
+5. Đảo ngược mảng
+6. Kiểm tra mảng có đối xứng không
+7. Thoát chương trình`);
+            switch (choice) {
+                case 1:
+                    let n = +prompt("Mời bạn nhập vào n số phần tử: ")
+                    for (let i = 0; i < n; i++) {
+                        a.push(+prompt(`Mời bạn nhập phần tử thứ ${i + 1}`))
+                    }
+                    break;
+                case 2:
+                    alert(`Mảng hiện tại ${a}`)
+                    break;
+                case 3:
+                    let max = [0];
+                    let count = 0;
+                    for (let index in a) {
+                        if (max < a[index]) {
+                            max = a[index]
+                            count++;
+                        }
+                    }
+                    alert(`Phần tử lớn nhất ${max} vị trí thứ ${count} trong mảng`);
+                    break;
+                case 4:
+                    let sum = 0;
+                    for (let value of a) {
+                        if (value % 2 === 0) {
+                            sum += value;
+                        }
+                    }
+                    alert(`Tổng cá số dương có trong mảng là ${sum}`);
+                    alert(`Trung bình số dương có trong mảng là ${sum / a.length}`);
+                    break;
+                case 5:
+                    alert(`Mảng đảo ngược là: ${a.reverse}`);
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+                    alert('Thoát');
+                    break;
+                default:
+                    alert("Mời bạn chọn lại")
+                    break;
+            }
+        } while (choice !== 7);
+    </script>
+</body>
+
+</html>

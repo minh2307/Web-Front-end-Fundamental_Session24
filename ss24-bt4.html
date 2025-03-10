@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let choice;
+        do {
+            choice = +prompt(`1. Nhập mảng 2 chiều
+2. Hiển thị mảng 2 chiều
+3. Tính tổng các phần tử trong mảng
+4. Tìm phần tử lớn nhất trong mảng và chỉ số của nó
+5. Tính trung bình cộng các phần tử của một hàng cụ thể
+6. Đảo ngược các hàng trong mảng
+7. Thoát chương trình`);
+
+            switch (choice) {
+                case 1:
+                    let row = +prompt("Mời bạn nhập số dòng của mảng 2 chiều: ");
+                    let col = +prompt("Mời bạn nhập số cột của mảng 2 chiều: ");
+                    a = [];
+                    for (let i = 0; i < row; i++) {
+                        let rowArr = [];
+                        for (let j = 0; j < col; j++) {
+                            let element = prompt(`Nhập phần tử tại dòng ${i + 1}, cột ${j + 1}:`);
+                            rowArr.push(Number(element));
+                        }
+                        a.push(rowArr);
+                    }
+                    break;
+
+                case 2:
+                    let arr = "";
+                    for (let i = 0; i < a.length; i++) {
+                        for (let j = 0; j < a[i].length; j++) {
+                            arr += `${a[i][j]}, `;
+                        }
+                        arr += `\n`;
+                    }
+                    alert(`Mảng hiện tại:${arr}`);
+                    break;
+
+                case 3:
+                    let sum = 0;
+                    for (let i = 0; i < a.length; i++) {
+                        for (let j = 0; j < a[i].length; j++) {
+                            sum += a[i][j];
+                        }
+                    }
+                    alert(`Tổng các phần tử có trong mảng: ${sum}`);
+                    break;
+
+                case 4:
+                    let max = a[0][0];
+                    let r = 0, c = 0;
+                    for (let i = 0; i < a.length; i++) {
+                        for (let j = 0; j < a[i].length; j++) {
+                            if (max < a[i][j]) {
+                                max = a[i][j];
+                                r = i;
+                                c = j;
+                            }
+                        }
+                    }
+                    alert(`Phần tử lớn nhất trong mảng là ${max} tại vị trí row: ${r + 1}, col: ${c + 1}`);
+                    break;
+
+                case 5:
+                    let rowNum = +prompt(`Mời bạn nhập vào dòng (0 - ${a.length - 1}): `);
+                    if (rowNum >= 0 && rowNum < a.length) {
+                        sum = 0;
+                        for (let i = 0; i < a[rowNum].length; i++) {
+                            sum += a[rowNum][i];
+                        }
+                        alert(`Trung bình cộng các phần tử của hàng ${rowNum + 1} là: ${sum / a[rowNum].length}`);
+                    } else {
+                        alert("Dòng không hợp lệ.");
+                    }
+                    break;
+
+                case 6:
+                    a.reverse();
+                    alert("Đã đảo ngược các hàng trong mảng.");
+                    break;
+
+                case 7:
+                    alert('Thoát chương trình.');
+                    break;
+
+                default:
+                    alert("Mời bạn chọn lại");
+                    break;
+            }
+        } while (choice !== 7);
+    </script>
+</body>
+
+</html>

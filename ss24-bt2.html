@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let choice;
+        do {
+            choice = +prompt(`1.Nhập mảng số nguyên \n 2.Hiển thị mảng \n 3.Tìm phần tử chẵn lẻ \n 4.Tính trung bình cộng của mảng \n 5.xoá phần tử trong mảng \n 6.Tìm phần tử lớn thứ hai trong mảng \n 7.Thoát chương trình \n Mời bạn nhập só nguyên bất kỳ`);
+            switch (choice) {
+                case 1:
+                    let n = +prompt("Mời bạn nhập vào n số phần tử: ")
+                    for (let i = 0; i < n; i++) {
+                        a.push(+prompt(`Mời bạn nhập phần tử thứ ${i + 1}`))
+                    }
+                    break;
+                case 2:
+                    alert(`Mang hiện tại ${a}`)
+                    break;
+                case 3:
+                    let odd = [], even = [];
+                    for (let value of a) {
+                        if (value % 2 === 0) {
+                            even.push(value);
+                        } else {
+                            odd.push(value);
+                        }
+                    }
+                    alert(`Số lẻ có trong mảng là: ${odd}`);
+                    alert(`Số chẵn có trong mảng là: ${even}`);
+                    break;
+                case 4:
+                    let sum = 0;
+                    for (let value of a) {
+                        sum += value;
+                    }
+                    let tb = sum / a.length;
+                    alert(`Số trung bình cộng của mảng: ${tb}`);
+                    break;
+                case 5:
+                    let del = +prompt("Mời bạn nhập vào vị trí phần tử muốn xoá: ");
+                    if (del >= 0 && del < a.length) {
+                        a.splice(del, 1);
+                        alert(`Mảng sau khi xoá: ${a}`);
+                    } else {
+                        alert("Vị trí không hợp lệ!");
+                    }
+                case 6:
+                    let max = a[0];
+                    let secondLargest = 0;
+                    for (let value of a) {
+                        if (max < value) {
+                            secondLargest = max;
+                            max = value;
+                        } else if (value > secondLargest && value !== max) {
+                            secondLargest = value;
+                        }
+                    }
+                    alert(`Phần tử lớn thứ 2 trong mảng là: ${secondLargest}`);
+                    break;
+                case 7:
+                    alert('Thoát');
+                    break;
+                default:
+                    alert(`Mời bạn nhập lại`);
+                    break;
+            }
+        } while (choice !== 7);
+    </script>
+</body>
+
+</html>
